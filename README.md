@@ -1,4 +1,4 @@
-# CashTranslator
+# Address Translator
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.0.
 
@@ -9,15 +9,15 @@ Go to /copay-recovery/node_modules/@angular/cli/models/webpack-configs/common.js
 And replace this node definition:
 ```
 Node: {
-             Fs: 'empty',
-             Global: true,
-             Crypto: true,
-             Tls: 'empty',
-             Net: 'empty'
-             Process: true,
-             Module: false,
-             ClearImmediate: false,
-             SetImmediate: false
+         Fs: 'empty',
+         Global: true,
+         Crypto: true,
+         Tls: 'empty',
+         Net: 'empty'
+         Process: true,
+         Module: false,
+         ClearImmediate: false,
+         SetImmediate: false
        }
 ```
 
