@@ -6,7 +6,7 @@ import * as bitcoreCash from 'bitcore-lib-cash';
 export class AddressTranslatorService {
 
   public addressResult: string;
-  public newAddress: any;
+  private newAddress: any;
 
   translate(address: string) {
     try {
