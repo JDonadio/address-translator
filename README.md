@@ -2,6 +2,30 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.0.
 
+For the use of Crypto in our code, a modification must be done in the @ angular / cli code.
+
+Go to /copay-recovery/node_modules/@angular/cli/models/webpack-configs/common.js
+
+And replace this node definition:
+```
+Node: {
+             Fs: 'empty',
+             Global: true,
+             Crypto: true,
+             Tls: 'empty',
+             Net: 'empty'
+             Process: true,
+             Module: false,
+             ClearImmediate: false,
+             SetImmediate: false
+       }
+```
+
+Specifically:
+Crypto: 'empty' for crypto: true,
+
+You can see the original discussion about this here: https://github.com/angular/angular-cli/issues/1548
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
