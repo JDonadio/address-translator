@@ -4,7 +4,7 @@
     <div class="header-center">
       <h3 class="header-title">Address translator</h3>
       <div class="repository-link">
-        <a href="https://github.com/bitpay/copay-recovery" target="blank">
+        <a href="https://github.com/JDonadio/address-translator" target="blank">
           <img src="assets/img/github.png" alt="Github">
         </a>
       </div>
@@ -17,13 +17,22 @@
   <form #translateForm="ngForm" (ngSubmit)="translateAddress(addressToTranslate)">
     <div class="card">
       <div class="card-block">
-        <h6 class="card-title">Address test 120931i0293u12</h6>
+        <h6 class="card-title">Addresses</h6>
         <div class="input-group">
-          <div class="input-group-addon">Address:</div>
+          <div class="input-group-addon">Origin:</div>
           <input type="text" class="form-control" id="addressToTranslate" name="addressToTranslate" [(ngModel)]="addressToTranslate" required>
         </div>
       </div>
     </div>
-    <button type="submit" [disabled]="" class="btn btn-primary btn-lg btn-block">Transfer</button>
+    <div class="card">
+      <div class="card-block">
+        <div class="input-group">
+          <div class="input-group-addon">Result:</div>
+          <input type="text" class="form-control" id="result" [disabled]="true" name="result" [(ngModel)]="result" [disabled]="true">
+        </div>
+      </div>
+    </div>
+    <button type="submit" [disabled]="" class="btn btn-primary btn-lg btn-block" *ngIf="!result">Translate</button>
+    <button type="button" (click)="reset()" class="btn btn-outline-primary btn-lg btn-block" *ngIf="result">Reset</button>
   </form>
 </div>

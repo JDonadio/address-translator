@@ -26,8 +26,8 @@
     "zone.js": "^0.8.14",
     "bitcore-lib": "^0.14.0",
     "bitcore-lib-cash": "https://github.com/bitpay/bitcore-lib.git#cash",
-    "bootstrap": "^4.0.0-alpha.6",
-    "ngx-bootstrap": "^1.8.0"
+    "bootstrap": "4.0.0-alpha.6",
+    "ngx-bootstrap": "1.8.0"
   },
   "devDependencies": {
     "@angular/cli": "1.4.0",
