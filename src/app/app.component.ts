@@ -9,6 +9,7 @@ import { AddressTranslatorService } from '../app/services/address.translator.ser
 })
 export class AppComponent {
   public addressToTranslate: string;
+  private result: string;
 
   constructor(private Translator: AddressTranslatorService) {
     this.addressToTranslate = '1JJFrtJN2PLgaWqGfS1JziXmXBHkrmTUF9';
@@ -16,6 +17,6 @@ export class AppComponent {
 
   translateAddress(addr: string) {
     console.log('Address to translate: ' + addr);
-    this.Translator.translate(addr);
+    this.result = this.Translator.translate(addr) || 'Could not translate address: ' + addr;
   }
 }
