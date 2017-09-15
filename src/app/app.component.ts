@@ -17,7 +17,7 @@ export class AppComponent {
   }
 
   translateAddress(addr: string) {
-    this.result = this.Translator.translate(addr);
+    this.result = this.Translator.translateAddress(addr);
     if (!this.result) this.error = 'Could not translate address: ' + addr;
     else this.result.toString();
   }
