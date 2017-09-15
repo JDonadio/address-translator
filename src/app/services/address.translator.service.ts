@@ -7,39 +7,44 @@ export class AddressTranslatorService {
 
   public addressResult: string;
   private newAddress: any;
+  private Bitcore: any;
 
-  translate(address: string) {
-    try {
-      this.newAddress = bitcore.Address(address);
-      var hash = this.newAddress.toObject().hash;
-
-      var buf = this.newAddress.toBuffer();
-      var ver = buf[0];
-
-      this.addressResult = bitcore.Address.fromBuffer(buf);
-      if (ver == 0) buf[0] = 28;
-      if (ver == 5) buf[0] = 40;
-
-      this.addressResult = bitcoreCash.Address.fromBuffer(buf);
-    } catch (e) {
-      console.error(e);
-      try {
-        this.newAddress = bitcoreCash.Address(address);
-        var hash = this.newAddress.toObject().hash;
-
-        var buf = this.newAddress.toBuffer();
-        var ver = buf[0];
-
-        this.addressResult = bitcoreCash.Address.fromBuffer(buf);
-        if (ver == 0x28) buf[0] = 0;
-        if (ver == 0x40) buf[0] = 5;
-
-        this.addressResult = bitcore.Address.fromBuffer(buf);
-      } catch (e) {
-        console.error(e);
-        return null;
-      };
+  constructor() {
+    this.Bitcore = {
+      'btc': {
+        lib: bitcore,
+        translateTo: 'bch'
+      },
+      'bch': {
+        lib: bitcoreCash,
+        translateTo: 'btc'
+      }
     };
-    return this.addressResult;
+  }
+
+  getAddressCoin(address: string) {
+    try {
+      new this.Bitcore['btc'].lib.Address(address);
+      return 'btc';
+    } catch (e) {
+      try {
+        new this.Bitcore['bch'].lib.Address(address);
+        return 'bch';
+      } catch (e) {
+        return null;
+      }
+    }
+  };
+
+  translateAddress(address: string) {
+    var origCoin = this.getAddressCoin(address);
+    if (!origCoin) return;
+
+    var origAddress = new this.Bitcore[origCoin].lib.Address(address);
+    var origObj = origAddress.toObject();
+
+    var resultCoin = this.Bitcore[origCoin].translateTo;
+    var resultAddress = this.Bitcore[resultCoin].lib.Address.fromObject(origObj);
+    return resultAddress.toString();
   };
 }

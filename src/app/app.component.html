@@ -14,13 +14,13 @@
 </div>
 
 <div class="container">
-  <form #translateForm="ngForm" (ngSubmit)="translateAddress(addressToTranslate)">
+  <form #translateForm="ngForm">
     <div class="card">
       <div class="card-block">
         <h6 class="card-title">Addresses</h6>
         <div class="input-group">
           <div class="input-group-addon">Origin:</div>
-          <input type="text" class="form-control" id="addressToTranslate" name="addressToTranslate" [(ngModel)]="addressToTranslate" required>
+          <input type="text" class="form-control" id="addressToTranslate" name="addressToTranslate" [(ngModel)]="addressToTranslate" (ngModelChange)="translateAddress(addressToTranslate)" required>
         </div>
       </div>
       <div class="card-block">
@@ -30,7 +30,6 @@
         </div>
       </div>
     </div>
-    <button type="submit" [disabled]="" class="btn btn-primary btn-lg btn-block" *ngIf="!result">Translate</button>
     <button type="button" (click)="reset()" class="btn btn-outline-primary btn-lg btn-block" *ngIf="result">Reset</button>
   </form>
 </div>
