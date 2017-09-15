@@ -45,6 +45,11 @@ export class AddressTranslatorService {
 
     var resultCoin = this.Bitcore[origCoin].translateTo;
     var resultAddress = this.Bitcore[resultCoin].lib.Address.fromObject(origObj);
-    return resultAddress.toString();
+    return {
+      origCoin: origCoin.toUpperCase(),
+      origAddress: address,
+      resultCoin: resultCoin.toUpperCase(),
+      resultAddress: resultAddress.toString()
+    };
   };
 }

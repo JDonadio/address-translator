@@ -9,17 +9,16 @@ import { AddressTranslatorService } from '../app/services/address.translator.ser
 })
 export class AppComponent {
   public addressToTranslate: string;
-  public result: string;
+  public result: any;
   public error: string;
 
   constructor(private Translator: AddressTranslatorService) {
-
+    this.reset();
   }
 
   translateAddress(addr: string) {
     this.result = this.Translator.translateAddress(addr);
     if (!this.result) this.error = 'Could not translate address: ' + addr;
-    else this.result.toString();
   }
 
   reset() {

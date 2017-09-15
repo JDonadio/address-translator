@@ -22,8 +22,14 @@ body {
   background-color: $bodyBackgroundColor;
 }
 
+.input-group-addon {
+  width: 110px;
+}
+
 .btn {
   cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .header {
@@ -43,6 +49,7 @@ body {
       font-size: 1.6rem;
 
       .header-title {
+        text-align: center;
         margin: 0rem;
         color: $white;
         text-shadow: 1px 1px $copayColor;
