@@ -1,24 +1,25 @@
 import { Component } from '@angular/core';
-import { AddressTranslatorService } from '../app/services/address.translator.service';
+import * as Translator from 'npm-address-translator';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [AddressTranslatorService]
 })
 export class AppComponent {
   public addressToTranslate: string;
-  public result: any;
+  public result: string;
   public error: string;
 
-  constructor(private Translator: AddressTranslatorService) {
+  constructor() {
     this.reset();
   }
 
-  translateAddress(addr: string) {
-    this.result = this.Translator.translateAddress(addr);
-    if (!this.result) this.error = 'Could not translate address: ' + addr;
+  translateAddress(address: string) {
+    this.result = Translator.translateAddress(this.addressToTranslate);
+    if (!this.result) {
+      this.error = 'Could not translate address: ' + address;
+    }
   }
 
   reset() {
