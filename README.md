@@ -5,7 +5,7 @@ A simple BTC/BCH addresses translator.
 Get the source code:
 
 ```
-git clone git@github.com:JDonadio/address-translator.git && cd address-translator
+git clone git@github.com:bitpay/address-translator.git && cd address-translator
 npm install
 ```
 
@@ -36,7 +36,7 @@ You can see the original discussion about this here: https://github.com/angular/
 ## Public Installation
 
 There is a public install of this software hosted at github at: 
-https://jdonadio.github.io/address-translator/
+https://bitpay.github.io/address-translator/
 
 ## Development server
 
@@ -69,7 +69,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 `npm i -g angular-cli-ghpages`
 
 ### Build:
-`ng build --prod --aot=false --base-href "https://USER.github.io/APP-NAME/"`
+`ng build --prod --aot=false --base-href "https://bitpay.github.io/address-translator/"`
 
 (see base-href on your repo settings)
 
