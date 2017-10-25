@@ -1,4 +1,4 @@
-For inquiries regarding Copay/BitPay wallet please visit our: 
+For general questions regarding Copay/BitPay wallet please visit our: 
 
   * [Wiki section](https://github.com/bitpay/copay/wiki/COPAY---FAQ) 
   * [How To Library on YouTube](https://www.youtube.com/user/BitPayVideos/playlists)
