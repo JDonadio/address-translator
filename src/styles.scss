@@ -22,6 +22,14 @@ body {
   background-color: $bodyBackgroundColor;
 }
 
+.warning {
+  border-radius: 3px;
+  padding: 15px;
+  margin-bottom: 20px;
+  background: #F7CC57;
+  color: #4C4C4C;
+}
+
 .input-group-addon {
   width: 110px;
 }

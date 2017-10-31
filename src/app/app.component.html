@@ -2,9 +2,9 @@
   <div class="header-content">
     <img class="bitpay-logo" src="assets/img/bitpay-logo-negative.svg" alt="Bitpay">
     <div class="header-center">
-      <h3 class="header-title">BCH Address Translator</h3>
+      <h3 class="header-title">BCH Address Format Translator</h3>
       <div class="repository-link">
-        <a href="https://github.com/JDonadio/address-translator" target="blank">
+        <a href="https://github.com/bitpay/address-translator" target="blank">
           <img src="assets/img/github.png" alt="Github">
         </a>
       </div>
@@ -14,6 +14,12 @@
 </div>
 
 <div class="container">
+  <div class="warning">
+    <b>WARNING:</b> This tool can ONLY be used to translate an old-format BCH address to the BCH address format used by BitPay and Copay wallets,
+    or vice versa. This tool DOES NOT turn BTC into BCH or turn BTC addresses into BCH addresses. Learn more about BitPay's
+    adopted <a href="https://support.bitpay.com/hc/en-us/articles/115004671663-BitPay-s-Adopted-Conventions-for-Bitcoin-Cash-Addresses-URIs-and-Payment-Requests" target="_blank">BCH address formatting conventions.</a>
+  </div>
+
   <form #translateForm="ngForm">
     <div class="card">
       <div class="card-block">
@@ -23,13 +29,6 @@
             <div class="input-group">
               <div class="input-group-addon">Address:</div>
               <input type="text" class="form-control" id="addressToTranslate" name="addressToTranslate" [(ngModel)]="addressToTranslate" (ngModelChange)="translateAddress(addressToTranslate)">
-            </div>
-          </div>
-
-          <div class="form-group col-sm-4" *ngIf="result" [hidden]="true">
-            <div class="input-group">
-              <div class="input-group-addon">Coin:</div>
-              <input type="text" class="form-control" id="origCoin" name="origCoin" [(ngModel)]="result.origCoin" [disabled]="true">
             </div>
           </div>
         </div>
@@ -43,14 +42,7 @@
           <div class="form-group col">
             <div class="input-group">
               <div class="input-group-addon">Address:</div>
-              <input type="text" class="form-control" id="resultAddress" [disabled]="true" name="resultAddress" [(ngModel)]="result.resultAddress">
-            </div>
-          </div>
-
-          <div class="form-group col-sm-4" [hidden]="true">
-            <div class="input-group">
-              <div class="input-group-addon">Coin:</div>
-              <input type="text" class="form-control" id="resultCoin" name="resultCoin" [(ngModel)]="result.resultCoin" [disabled]="true">
+              <input type="text" class="form-control" id="resultAddress" [disabled]="true" name="resultAddress" [(ngModel)]="result.resultAddress" style="cursor: initial">
             </div>
           </div>
         </div>
