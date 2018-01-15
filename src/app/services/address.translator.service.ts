@@ -5,30 +5,16 @@ import * as bitcoreCash from 'bitcore-lib-cash';
 @Injectable()
 export class AddressTranslatorService {
 
-  public addressResult: string;
-  private newAddress: any;
-  private Bitcore: any;
-
   constructor() {
-    this.Bitcore = {
-      'btc': {
-        lib: bitcore,
-        translateTo: 'bch'
-      },
-      'bch': {
-        lib: bitcoreCash,
-        translateTo: 'btc'
-      }
-    };
   }
 
-  getAddressCoin(address: string) {
+  public getAddressCoin(address: string): any {
     try {
-      new this.Bitcore['btc'].lib.Address(address);
+      bitcore.Address(address);
       return 'btc';
     } catch (e) {
       try {
-        new this.Bitcore['bch'].lib.Address(address);
+        bitcoreCash.Address(address);
         return 'bch';
       } catch (e) {
         return null;
@@ -36,20 +22,27 @@ export class AddressTranslatorService {
     }
   };
 
-  translateAddress(address: string) {
-    var origCoin = this.getAddressCoin(address);
-    if (!origCoin) return;
-
-    var origAddress = new this.Bitcore[origCoin].lib.Address(address);
+  public translateCashAddress(addressToTranslate: string): string {
+    var origAddress = bitcore.Address(addressToTranslate);
     var origObj = origAddress.toObject();
+    var resultAddress = bitcoreCash.Address.fromObject(origObj).toCashAddress();
+    return resultAddress;
+  }
 
-    var resultCoin = this.Bitcore[origCoin].translateTo;
-    var resultAddress = this.Bitcore[resultCoin].lib.Address.fromObject(origObj);
-    return {
-      origCoin: origCoin.toUpperCase(),
-      origAddress: address,
-      resultCoin: resultCoin.toUpperCase(),
-      resultAddress: resultAddress.toString()
-    };
-  };
+  public translateCopayAddress(addressToTranslate: string): string {
+    var origAddress = bitcore.Address(addressToTranslate);
+    var origObj = origAddress.toObject();
+    var resultAddress = bitcoreCash.Address.fromObject(origObj);
+    return resultAddress;
+  }
+
+  public translateLegacyAddress(addressToTranslate: string): string {
+    var origCoin = this.getAddressCoin(addressToTranslate);
+    if (origCoin == 'btc') return addressToTranslate;
+
+    var origAddress = bitcoreCash.Address(addressToTranslate);
+    var origObj = origAddress.toObject();
+    var resultAddress = bitcore.Address.fromObject(origObj);
+    return resultAddress;
+  }
 }

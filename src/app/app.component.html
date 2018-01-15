@@ -15,39 +15,66 @@
 
 <div class="container">
   <div class="warning">
-    <b>WARNING:</b> This tool can ONLY be used to translate an old-format BCH address to the BCH address format used by BitPay and Copay wallets,
-    or vice versa. This tool DOES NOT turn BTC into BCH or turn BTC addresses into BCH addresses. Learn more about BitPay's
-    adopted <a href="https://support.bitpay.com/hc/en-us/articles/115004671663-BitPay-s-Adopted-Conventions-for-Bitcoin-Cash-Addresses-URIs-and-Payment-Requests" target="_blank">BCH address formatting conventions.</a>
+    <b>WARNING:</b> This tool can ONLY be used to translate an old-format BCH address to the BCH address format used by BitPay
+    and Copay wallets, or vice versa. This tool DOES NOT turn BTC into BCH or turn BTC addresses into BCH addresses. Learn
+    more about BitPay's adopted
+    <a href="https://support.bitpay.com/hc/en-us/articles/115004671663-BitPay-s-Adopted-Conventions-for-Bitcoin-Cash-Addresses-URIs-and-Payment-Requests"
+      target="_blank">BCH address formatting conventions.</a>
   </div>
 
   <form #translateForm="ngForm">
     <div class="card">
       <div class="card-block">
-        <h6 class="card-title">Original</h6>
+        <h6 class="card-title">Enter a Bitcoin Cash address</h6>
         <div class="row">
           <div class="form-group col">
             <div class="input-group">
               <div class="input-group-addon">Address:</div>
-              <input type="text" class="form-control" id="addressToTranslate" name="addressToTranslate" [(ngModel)]="addressToTranslate" (ngModelChange)="translateAddress(addressToTranslate)">
+              <input type="text" class="form-control" id="addressToTranslate" name="addressToTranslate" [(ngModel)]="addressToTranslate"
+                (ngModelChange)="translateAddress(addressToTranslate)">
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="card" *ngIf="result">
+    <div class="card" *ngIf="cashAddr">
       <div class="card-block">
-        <h6 class="card-title">Translation</h6>
         <div class="row">
           <div class="form-group col">
             <div class="input-group">
-              <div class="input-group-addon">Address:</div>
-              <input type="text" class="form-control" id="resultAddress" [disabled]="true" name="resultAddress" [(ngModel)]="result.resultAddress" style="cursor: initial">
+              <div class="input-group-addon">CashAddr:</div>
+              <input type="text" class="form-control" id="cashAddr" readonly="readonly" name="cashAddr" [(ngModel)]="cashAddr">
             </div>
           </div>
         </div>
       </div>
     </div>
-    <button type="button" (click)="reset()" class="btn btn-outline-primary btn-lg btn-block" *ngIf="result">Reset</button>
+
+    <div class="card" *ngIf="copayAddr">
+      <div class="card-block">
+        <div class="row">
+          <div class="form-group col">
+            <div class="input-group">
+              <div class="input-group-addon">Copay:</div>
+              <input type="text" class="form-control" id="copayAddr" readonly="readonly" name="copayAddr" [(ngModel)]="copayAddr">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" *ngIf="legacyAddr">
+      <div class="card-block">
+        <div class="row">
+          <div class="form-group col">
+            <div class="input-group">
+              <div class="input-group-addon">Legacy:</div>
+              <input type="text" class="form-control" id="legacyAddr" readonly="readonly" name="legacyAddr" [(ngModel)]="legacyAddr">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </form>
 </div>

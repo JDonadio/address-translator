@@ -8,21 +8,19 @@ import { AddressTranslatorService } from '../app/services/address.translator.ser
   providers: [AddressTranslatorService]
 })
 export class AppComponent {
-  public addressToTranslate: string;
-  public result: any;
-  public error: string;
 
-  constructor(private Translator: AddressTranslatorService) {
-    this.reset();
+  public cashAddr: any;
+  public copayAddr: any;
+  public legacyAddr: any;
+
+  constructor(
+    private addressTranslatorService: AddressTranslatorService
+  ) {
   }
 
-  translateAddress(addr: string) {
-    this.result = this.Translator.translateAddress(addr);
-    if (!this.result) this.error = 'Could not translate address: ' + addr;
-  }
-
-  reset() {
-    this.addressToTranslate = null;
-    this.result = null;
+  public translateAddress(addr: string): void {
+    this.legacyAddr = this.addressTranslatorService.translateLegacyAddress(addr);
+    this.copayAddr = this.addressTranslatorService.translateCopayAddress(this.legacyAddr);
+    this.cashAddr = this.addressTranslatorService.translateCashAddress(this.copayAddr);
   }
 }
