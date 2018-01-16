@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 import { AppComponent } from './app.component';
 
@@ -10,7 +11,8 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    NgxQRCodeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

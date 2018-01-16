@@ -9,9 +9,10 @@ import { AddressTranslatorService } from '../app/services/address.translator.ser
 })
 export class AppComponent {
 
-  public cashAddr: any;
-  public copayAddr: any;
-  public legacyAddr: any;
+  public cashAddr: string;
+  public copayAddr: string;
+  public legacyAddr: string;
+  public cashAddrUpperCase: string;
 
   constructor(
     private addressTranslatorService: AddressTranslatorService
@@ -22,5 +23,6 @@ export class AppComponent {
     this.legacyAddr = this.addressTranslatorService.translateLegacyAddress(addr);
     this.copayAddr = this.addressTranslatorService.translateCopayAddress(this.legacyAddr);
     this.cashAddr = this.addressTranslatorService.translateCashAddress(this.copayAddr);
+    this.cashAddrUpperCase = this.cashAddr.toUpperCase();
   }
 }
