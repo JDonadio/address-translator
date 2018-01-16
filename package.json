@@ -24,8 +24,8 @@
     "core-js": "^2.4.1",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14",
-    "bitcore-lib": "^0.14.0",
-    "bitcore-lib-cash": "https://github.com/bitpay/bitcore-lib.git#cash",
+    "bitcore-lib": "^0.15.0",
+    "bitcore-lib-cash": "^0.16.1",
     "bootstrap": "4.0.0-alpha.6",
     "ngx-bootstrap": "1.8.0"
   },
