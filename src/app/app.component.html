@@ -15,11 +15,12 @@
 
 <div class="container">
   <div class="warning">
-    <b>WARNING:</b> This tool can ONLY be used to translate an old-format BCH address to the BCH address format used by BitPay
-    and Copay wallets, or vice versa. This tool DOES NOT turn BTC into BCH or turn BTC addresses into BCH addresses. Learn
-    more about BitPay's adopted
-    <a href="https://support.bitpay.com/hc/en-us/articles/115004671663-BitPay-s-Adopted-Conventions-for-Bitcoin-Cash-Addresses-URIs-and-Payment-Requests"
-      target="_blank">BCH address formatting conventions.</a>
+    <b>WARNING:</b> This tool is ONLY for translating old-format BCH addresses to the BCH address formats used by BitPay and
+    Copay wallets, or vice versa. This tool DOES NOT turn BTC into BCH or turn BTC addresses into BCH addresses
+  </div>
+
+  <div class="note">
+    <b>NOTE:</b> Starting in version v3.12, BitPay and Copay BCH wallets use the CashAddr format by default.
   </div>
 
   <form #translateForm="ngForm">
@@ -30,7 +31,7 @@
           <div class="form-group col">
             <div class="input-group">
               <div class="input-group-addon">Address:</div>
-              <input type="text" class="form-control" id="addressToTranslate" name="addressToTranslate" [(ngModel)]="addressToTranslate"
+              <input type="text" class="form-control ellipsis" id="addressToTranslate" name="addressToTranslate" [(ngModel)]="addressToTranslate"
                 (ngModelChange)="translateAddress(addressToTranslate)">
             </div>
           </div>
@@ -43,8 +44,8 @@
         <div class="row">
           <div class="form-group col">
             <div class="input-group">
-              <div class="input-group-addon">CashAddr:</div>
-              <input type="text" class="form-control" id="cashAddr" readonly="readonly" name="cashAddr" [(ngModel)]="cashAddr">
+              <div class="input-group-addon">Current CashAddr Format:</div>
+              <input type="text" class="form-control ellipsis" id="cashAddr" readonly="readonly" name="cashAddr" [(ngModel)]="cashAddr">
             </div>
           </div>
         </div>
@@ -56,8 +57,8 @@
         <div class="row">
           <div class="form-group col">
             <div class="input-group">
-              <div class="input-group-addon">Copay:</div>
-              <input type="text" class="form-control" id="copayAddr" readonly="readonly" name="copayAddr" [(ngModel)]="copayAddr">
+              <div class="input-group-addon">Legacy BitPay BCH Format:</div>
+              <input type="text" class="form-control ellipsis" id="copayAddr" readonly="readonly" name="copayAddr" [(ngModel)]="copayAddr">
             </div>
           </div>
         </div>
@@ -69,8 +70,8 @@
         <div class="row">
           <div class="form-group col">
             <div class="input-group">
-              <div class="input-group-addon">Legacy:</div>
-              <input type="text" class="form-control" id="legacyAddr" readonly="readonly" name="legacyAddr" [(ngModel)]="legacyAddr">
+              <div class="input-group-addon">Legacy BCH Format:</div>
+              <input type="text" class="form-control ellipsis" id="legacyAddr" readonly="readonly" name="legacyAddr" [(ngModel)]="legacyAddr">
             </div>
           </div>
         </div>
