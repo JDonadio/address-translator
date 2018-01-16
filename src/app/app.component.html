@@ -49,6 +49,10 @@
             </div>
           </div>
         </div>
+        <div *ngIf="cashAddr && cashAddrUpperCase" class="qrcode">
+          <ngx-qrcode qrc-value="{{cashAddrUpperCase}}" qrc-errorCorrectionLevel="M">
+          </ngx-qrcode>
+        </div>
       </div>
     </div>
 
@@ -61,6 +65,10 @@
               <input type="text" class="form-control ellipsis" id="copayAddr" readonly="readonly" name="copayAddr" [(ngModel)]="copayAddr">
             </div>
           </div>
+        </div>
+        <div class="qrcode">
+          <ngx-qrcode qrc-value="{{copayAddr}}" qrc-errorCorrectionLevel="M">
+          </ngx-qrcode>
         </div>
       </div>
     </div>
@@ -75,7 +83,12 @@
             </div>
           </div>
         </div>
+        <div class="qrcode">
+          <ngx-qrcode qrc-value="{{legacyAddr}}" qrc-errorCorrectionLevel="M">
+          </ngx-qrcode>
+        </div>
       </div>
     </div>
+
   </form>
 </div>
