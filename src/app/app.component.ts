@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AddressTranslatorService } from '../app/services/address.translator.service';
+import { ActivatedRoute } from '@angular/router';
+import { skip } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -15,10 +17,16 @@ export class AppComponent {
   public cashAddrUpperCase: string;
   public copiedFormat: string;
   public showCopyAlert: boolean;
+  public addressToTranslate: string;
 
   constructor(
-    private addressTranslatorService: AddressTranslatorService
+    private addressTranslatorService: AddressTranslatorService,
+    private route: ActivatedRoute
   ) {
+    this.route.queryParams.pipe(skip(1)).subscribe(params => {
+      this.addressToTranslate = params['addr'];
+      this.translateAddress(this.addressToTranslate);
+    });
     this.showCopyAlert = false;
   }
 
