@@ -24,7 +24,7 @@
     "@techiediaries/ngx-qrcode": "0.0.5",
     "bitcore-lib": "^0.15.0",
     "bitcore-lib-cash": "^0.16.1",
-    "bootstrap": "4.0.0-alpha.6",
+    "bootstrap": "^4.1.0",
     "core-js": "^2.4.1",
     "ngx-bootstrap": "1.8.0",
     "rxjs": "^5.4.2",

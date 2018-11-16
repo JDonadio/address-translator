@@ -13,6 +13,15 @@
   </div>
 </div>
 
+<div class="message" *ngIf="showCopyAlert">
+  <div class="alert alert-success message-text">
+    {{copiedFormat}} format copied to clipboard
+    <button class="close" (click)="close()">
+      &times;
+    </button>
+  </div>
+</div>
+
 <div class="container">
   <div class="warning">
     <b>WARNING:</b> This tool is ONLY for translating old-format BCH addresses to the BCH address formats used by BitPay and
@@ -23,72 +32,48 @@
     <b>NOTE:</b> Starting in version v3.12, BitPay and Copay BCH wallets use the CashAddr format by default.
   </div>
 
-  <form #translateForm="ngForm">
-    <div class="card">
-      <div class="card-block">
-        <h6 class="card-title">Enter a Bitcoin Cash address</h6>
-        <div class="row">
-          <div class="form-group col">
-            <div class="input-group">
-              <div class="input-group-addon">Address:</div>
-              <input type="text" class="form-control ellipsis" id="addressToTranslate" name="addressToTranslate" [(ngModel)]="addressToTranslate"
-                (ngModelChange)="translateAddress(addressToTranslate)">
-            </div>
-          </div>
+  <div class="card">
+    <div class="card-body">
+      <h6 class="card-title">Enter a Bitcoin Cash address</h6>
+      <div class="form-group row">
+        <div class="col-sm-10">
+          <input type="text" class="form-control ellipsis" id="addressToTranslate" name="addressToTranslate" [(ngModel)]="addressToTranslate"
+            (ngModelChange)="translateAddress(addressToTranslate)">
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="card" *ngIf="cashAddr">
-      <div class="card-block">
-        <div class="row">
-          <div class="form-group col">
-            <div class="input-group">
-              <div class="input-group-addon">Current CashAddr Format:</div>
-              <input type="text" class="form-control ellipsis" id="cashAddr" readonly="readonly" name="cashAddr" [(ngModel)]="cashAddr">
-            </div>
-          </div>
-        </div>
-        <div *ngIf="cashAddr && cashAddrUpperCase" class="qrcode">
-          <ngx-qrcode qrc-value="{{cashAddrUpperCase}}" qrc-errorCorrectionLevel="M">
-          </ngx-qrcode>
-        </div>
+  <div class="card" *ngIf="cashAddr">
+    <div class="card-body">
+      <h6 class="card-title">Current CashAddr Format</h6>
+      <p class="card-text">{{cashAddr}}</p>
+      <div *ngIf="cashAddr && cashAddrUpperCase" class="qrcode">
+        <ngx-qrcode qrc-value="{{cashAddrUpperCase}}" qrc-errorCorrectionLevel="M" (click)="copyToClipboard(cashAddr, 'CashAddr')">
+        </ngx-qrcode>
       </div>
     </div>
+  </div>
 
-    <div class="card" *ngIf="copayAddr">
-      <div class="card-block">
-        <div class="row">
-          <div class="form-group col">
-            <div class="input-group">
-              <div class="input-group-addon">Legacy BitPay BCH Format:</div>
-              <input type="text" class="form-control ellipsis" id="copayAddr" readonly="readonly" name="copayAddr" [(ngModel)]="copayAddr">
-            </div>
-          </div>
-        </div>
-        <div class="qrcode">
-          <ngx-qrcode qrc-value="{{copayAddr}}" qrc-errorCorrectionLevel="M">
-          </ngx-qrcode>
-        </div>
+  <div class="card" *ngIf="copayAddr">
+    <div class="card-body">
+      <h6 class="card-title">Legacy BitPay BCH Format</h6>        
+      <p class="card-text">{{copayAddr}}</p>
+      <div class="qrcode">
+        <ngx-qrcode qrc-value="{{copayAddr}}" qrc-errorCorrectionLevel="M" (click)="copyToClipboard(copayAddr, 'Legacy BitPay BCH')">
+        </ngx-qrcode>
       </div>
     </div>
+  </div>
 
-    <div class="card" *ngIf="legacyAddr">
-      <div class="card-block">
-        <div class="row">
-          <div class="form-group col">
-            <div class="input-group">
-              <div class="input-group-addon">Legacy BCH Format:</div>
-              <input type="text" class="form-control ellipsis" id="legacyAddr" readonly="readonly" name="legacyAddr" [(ngModel)]="legacyAddr">
-            </div>
-          </div>
-        </div>
-        <div class="qrcode">
-          <ngx-qrcode qrc-value="{{legacyAddr}}" qrc-errorCorrectionLevel="M">
-          </ngx-qrcode>
-        </div>
+  <div class="card" *ngIf="legacyAddr">
+    <div class="card-body">
+      <h6 class="card-title">Legacy BCH Format</h6>   
+      <p class="card-text">{{legacyAddr}}</p>
+      <div class="qrcode">
+        <ngx-qrcode qrc-value="{{legacyAddr}}" qrc-errorCorrectionLevel="M" (click)="copyToClipboard(legacyAddr, 'Legacy BCH')">
+        </ngx-qrcode>
       </div>
     </div>
-
-  </form>
+  </div>
 </div>
